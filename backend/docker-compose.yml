@@ -1,0 +1,42 @@
+# WashWise — run the backend + MySQL together in containers.
+#   docker compose up --build
+# Then open http://localhost:5001/health  (API health check)
+# Seed demo data once containers are up:
+#   docker compose exec backend python seed.py
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: washwise_dev   # container-only dev password (throwaway DB)
+      MYSQL_DATABASE: washwise
+    ports:
+      - "3307:3306"          # host 3307 -> container 3306 (avoids clashing with local MySQL)
+    volumes:
+      - dbdata:/var/lib/mysql
+      # Auto-run on first startup, in order:
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./procedures.sql:/docker-entrypoint-initdb.d/02-procedures.sql
+      - ./indexes_views.sql:/docker-entrypoint-initdb.d/03-indexes_views.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pwashwise_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  backend:
+    build: .
+    environment:
+      DB_HOST: db            # the service name, not 127.0.0.1
+      DB_PORT: "3306"
+      DB_USER: root
+      DB_PASSWORD: washwise_dev
+      DB_NAME: washwise
+    ports:
+      - "5001:5000"          # host 5001 -> container 5000
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  dbdata:

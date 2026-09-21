@@ -1,0 +1,15 @@
+# Backend-local ignores
+.env
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+exports/
+.DS_Store
+
+# Personal checklist
+CHECKLIST.md
+
+# Demo dashboard
+static/

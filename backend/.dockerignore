@@ -1,0 +1,10 @@
+# Keep the image small and secrets out
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.git
+.gitignore
+*.md
+exports/

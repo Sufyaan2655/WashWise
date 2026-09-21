@@ -1,0 +1,122 @@
+### WashWise API — REST Client test file
+### Install the "REST Client" extension, then click "Send Request" above each call.
+
+@base = http://localhost:5001
+
+### Health check
+GET {{base}}/health
+
+### List buildings
+GET {{base}}/buildings
+
+### Create a building
+POST {{base}}/buildings
+Content-Type: application/json
+
+{
+  "name": "Maple Court Apartments",
+  "address": "120 Maple St, Bronx, NY 10453"
+}
+
+### List users
+GET {{base}}/users
+
+### Create a user (tenant)
+POST {{base}}/users
+Content-Type: application/json
+
+{
+  "building_id": 1,
+  "name": "Alhassana Diallo",
+  "email": "adiallo@citymail.cuny.edu",
+  "password": "secret123",
+  "role": "tenant"
+}
+
+### Login
+POST {{base}}/login
+Content-Type: application/json
+
+{
+  "email": "adiallo@citymail.cuny.edu",
+  "password": "secret123"
+}
+
+### A user's bookings
+GET {{base}}/users/1/bookings
+
+### List machines in building 1
+GET {{base}}/machines?building_id=1
+
+### Create a machine
+POST {{base}}/machines
+Content-Type: application/json
+
+{
+  "building_id": 1,
+  "machine_number": 3,
+  "machine_type": "washer",
+  "cost_per_cycle": 2.50,
+  "duration_minutes": 30
+}
+
+### Update a machine's status
+PATCH {{base}}/machines/1
+Content-Type: application/json
+
+{
+  "status": "out_of_order"
+}
+
+### List subscription plans
+GET {{base}}/plans
+
+### List building subscriptions
+GET {{base}}/subscriptions
+
+### List bookings
+GET {{base}}/bookings
+
+### Create a booking
+POST {{base}}/bookings
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "machine_id": 1,
+  "start_time": "2026-07-03 08:00:00",
+  "end_time": "2026-07-03 08:30:00",
+  "price_at_booking": 2.50
+}
+
+### Get a single booking
+GET {{base}}/bookings/1
+
+### Cancel a booking
+DELETE {{base}}/bookings/1
+
+### Create a booking payment (app keeps a transaction fee)
+POST {{base}}/booking-payments
+Content-Type: application/json
+
+{
+  "booking_id": 1,
+  "gross_amount": 2.50
+}
+
+### Create a subscription payment
+POST {{base}}/subscription-payments
+Content-Type: application/json
+
+{
+  "subscription_id": 1,
+  "amount": 49.00,
+  "billing_period_start": "2026-07-01",
+  "billing_period_end": "2026-07-31"
+}
+
+### Revenue report (JSON)
+GET {{base}}/reports/revenue
+
+### Revenue report (Excel download)
+GET {{base}}/reports/revenue/export

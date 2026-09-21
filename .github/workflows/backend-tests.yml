@@ -1,0 +1,56 @@
+name: Backend tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: washwise
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install backend dependencies
+        run: pip install -r requirements.txt
+
+      - name: Load schema, procedures, indexes and views
+        run: |
+          mysql -h127.0.0.1 -uroot -proot_password washwise < schema.sql
+          mysql -h127.0.0.1 -uroot -proot_password washwise < procedures.sql
+          mysql -h127.0.0.1 -uroot -proot_password washwise < indexes_views.sql
+
+      - name: Run tests
+        env:
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_USER: root
+          DB_PASSWORD: root_password
+          DB_NAME: washwise
+          SECRET_KEY: ci-test-secret
+        run: pytest test_api.py test_db.py test_auth.py -v
