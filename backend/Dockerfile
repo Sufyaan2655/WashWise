@@ -4,13 +4,15 @@ FROM python:3.13-slim
 WORKDIR /app
 
 # Install dependencies first (better layer caching)
-# gunicorn is added here (container-only; local dev uses `python app.py`)
+# requirements.txt already includes gunicorn for production use
+# (local dev still just runs `python app.py`).
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt gunicorn==23.0.0
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
 COPY . .
 
-# Gunicorn serves the Flask app in the container on port 5000
+# Gunicorn serves the Flask app. $PORT is provided by the platform
+# (e.g. Railway) at runtime; defaults to 5000 for plain `docker run`.
 EXPOSE 5000
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+CMD gunicorn app:app --bind 0.0.0.0:${PORT:-5000}
