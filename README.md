@@ -36,14 +36,11 @@ Building managers can log in to a manager dashboard to monitor machines, view li
 
 ## Demo
 
-<video src="https://github.com/Sufyaan2655/WashWise/raw/main/docs/washwise-demo.mp4" controls width="720">
-  Your browser can't play this video inline —
-  <a href="docs/washwise-demo.mp4">open it directly</a>.
-</video>
+[![WashWise demo video](docs/washwise-demo-thumbnail.png)](docs/washwise-demo.mp4)
 
-A captioned walkthrough recorded against the running app: a resident reserving a
-machine and getting an instant notification, then a property manager's revenue
-dashboard. If the video above doesn't play inline, [open it directly](docs/washwise-demo.mp4).
+*(Click the screenshot to play the video.)* A captioned ~1:45 walkthrough recorded
+against the running app: a resident reserving a machine and getting an instant
+notification, then a property manager's live revenue dashboard.
 
 ## Team Project
 
