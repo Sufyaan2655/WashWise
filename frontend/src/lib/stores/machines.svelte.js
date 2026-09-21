@@ -1,6 +1,11 @@
 import { apiFetch } from '../api.js';
 import { authStore } from './auth.svelte.js';
 
+// WashWise is scoped to one building per account — machine numbers aren't
+// unique across buildings, so an anonymous visitor previews a single
+// representative building rather than every building's machines mixed together.
+const PREVIEW_BUILDING_ID = 1;
+
 function present(machine) {
 	const isWasher = machine.machine_type === 'washer';
 	const statusLabel =
@@ -35,7 +40,7 @@ class MachinesStore {
 	async load() {
 		this.loading = true;
 		try {
-			const buildingId = authStore.user?.building_id ?? '';
+			const buildingId = authStore.user?.building_id ?? PREVIEW_BUILDING_ID;
 			const data = await apiFetch(`/machines?building_id=${buildingId}`);
 			this.items = data.map(present);
 		} finally {
