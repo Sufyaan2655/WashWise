@@ -22,7 +22,7 @@
 </script>
 
 <header>
-	<a class="brand" href="/" aria-label="WASHWISE home"><span class="brand-mark">r</span> WASHWISE</a>
+	<a class="brand" href="/" aria-label="WASHWISE home"><span class="brand-mark">W</span> WASHWISE</a>
 	<nav aria-label="Main navigation">
 		<a class:active={isActive('/machines')} href="/machines">Find a machine</a>
 		<a class:active={isActive('/pricing')} href="/pricing">For properties</a>

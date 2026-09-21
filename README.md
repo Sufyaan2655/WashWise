@@ -34,6 +34,17 @@ Tenants can log in, view available washers and dryers, reserve a machine, view t
 
 Building managers can log in to a manager dashboard to monitor machines, view live revenue information, and see the building subscription plan.
 
+## Demo
+
+<video src="https://github.com/Sufyaan2655/WashWise/raw/main/docs/washwise-demo.mp4" controls width="720">
+  Your browser can't play this video inline —
+  <a href="docs/washwise-demo.mp4">open it directly</a>.
+</video>
+
+A captioned walkthrough recorded against the running app: a resident reserving a
+machine and getting an instant notification, then a property manager's revenue
+dashboard. If the video above doesn't play inline, [open it directly](docs/washwise-demo.mp4).
+
 ## Team Project
 
 Course: CSC336 – Introduction to Database Systems
