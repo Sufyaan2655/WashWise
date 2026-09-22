@@ -3,14 +3,42 @@
 	import { goto } from '$app/navigation';
 	import { authModalStore } from '$lib/stores/authModal.svelte.js';
 	import { machinesStore } from '$lib/stores/machines.svelte.js';
+
+	const heroVariants = [
+		{
+			kicker: 'Laundry, without the waiting',
+			line1: 'One less thing',
+			line2: 'to plan around.',
+			lead: "See what's open, book a time that works, and pay before you head downstairs."
+		},
+		{
+			kicker: 'Live machine status',
+			line1: 'Skip the trip',
+			line2: 'downstairs to check.',
+			lead: 'Every washer and dryer, updated as cycles run — check from your phone before you go.'
+		},
+		{
+			kicker: 'No more guessing',
+			line1: 'Know before',
+			line2: 'you go.',
+			lead: 'Real-time availability and a reserved window mean laundry day never starts with a wasted trip.'
+		},
+		{
+			kicker: 'Book in seconds',
+			line1: 'Your building,',
+			line2: 'on your time.',
+			lead: 'Reserve a machine, pay in the app, and go about your day — no coins, no scrambling.'
+		}
+	];
+	const hero = heroVariants[Math.floor(Math.random() * heroVariants.length)];
 </script>
 
 <div class="page" in:fade={{ duration: 260 }}>
 	<section class="hero wrap">
 		<div class="hero-copy">
-			<p class="kicker">Laundry, without the waiting</p>
-			<h1>One less thing<br />to plan around.</h1>
-			<p class="lead">See what's open, book a time that works, and pay before you head downstairs.</p>
+			<p class="kicker">{hero.kicker}</p>
+			<h1>{hero.line1}<br />{hero.line2}</h1>
+			<p class="lead">{hero.lead}</p>
 			<div class="hero-actions">
 				<button class="button" onclick={() => goto('/machines')}>Check availability <span>→</span></button>
 				<button class="link-button" onclick={() => authModalStore.open('signup', 'resident')}>Create resident account</button>

@@ -22,7 +22,6 @@
 
 <div style="position: relative;">
 	<button class="notif-bell" onclick={toggle} aria-label="Notifications">
-		🔔
 		{#if notificationsStore.unreadCount > 0}<span class="notif-dot"></span>{/if}
 	</button>
 

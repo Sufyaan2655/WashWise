@@ -84,12 +84,12 @@
 
 <style>
 	.chart-wrap { margin-top: 16px; }
-	.chart-legend { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; font-size: 12px; color: #5c7065; }
+	.chart-legend { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; font-size: 12px; color: var(--text-muted); }
 	.chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
 	.chart-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; }
 	.chart-legend .text-button { margin-left: auto; padding: 4px 0; }
 	svg { width: 100%; height: auto; }
 	.chart-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-	.chart-table th, .chart-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e2e5de; color: #3a463f; }
-	.chart-table th { color: #738178; font-weight: 700; }
+	.chart-table th, .chart-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); color: var(--text); }
+	.chart-table th { color: var(--text-muted); font-weight: 700; }
 </style>

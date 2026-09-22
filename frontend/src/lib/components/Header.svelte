@@ -6,6 +6,7 @@
 	import { noticeStore } from '../stores/notice.svelte.js';
 	import { bookingsStore } from '../stores/bookings.svelte.js';
 	import { notificationsStore } from '../stores/notifications.svelte.js';
+	import { themeStore } from '../stores/theme.svelte.js';
 	import NotificationBell from './NotificationBell.svelte';
 
 	function isActive(path) {
@@ -34,6 +35,12 @@
 		{/if}
 	</nav>
 	<div class="header-actions">
+		<button
+			class="theme-toggle"
+			onclick={() => themeStore.toggle()}
+			aria-label={themeStore.value === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+			aria-pressed={themeStore.value === 'dark'}
+		></button>
 		{#if authStore.isLoggedIn}
 			<NotificationBell />
 			<a class="user-name" href={authStore.isManager ? '/dashboard' : '/machines'}>{authStore.user.name}</a>
