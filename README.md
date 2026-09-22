@@ -10,6 +10,11 @@ revenue, and subscription tracking.
 **Stack:** SvelteKit 5 · Flask (raw SQL, no ORM) · MySQL (stored procedures,
 triggers, views) · JWT auth
 
+**Live demo:** [frontend-seven-zeta-eto7tdehln.vercel.app](https://frontend-seven-zeta-eto7tdehln.vercel.app)
+— sign in with the [demo accounts](#demo-accounts) below. The backend runs on a
+free trial tier and sleeps when idle, so the first request after a while may
+take a few seconds to wake up.
+
 ## Demo
 
 [![WashWise demo video](docs/washwise-demo-thumbnail.png)](docs/washwise-demo.mp4)
@@ -193,10 +198,20 @@ Open the address Vite prints, typically `http://localhost:5173`.
 
 ### Deploying
 
-The frontend deploys to Vercel as-is (`@sveltejs/adapter-auto` detects Vercel
-at build time). Set `VITE_API_URL` in the Vercel project's environment
-variables to the deployed backend's URL, and set `ALLOWED_ORIGINS` on the
-backend to the deployed frontend's URL so CORS allows it.
+The live demo above runs on:
+
+- **Frontend → Vercel.** Deploys as-is (`@sveltejs/adapter-auto` detects
+  Vercel at build time) with the `frontend/` directory as the project root.
+  Set `VITE_API_URL` in the Vercel project's environment variables to the
+  deployed backend's URL.
+- **Backend + MySQL → Railway.** The `backend/` directory deploys via the
+  included `Dockerfile` (a `Procfile` is included too, for platforms that use
+  Nixpacks instead). Add a MySQL database in the same Railway project and
+  reference its connection variables (`DB_HOST`, `DB_PORT`, `DB_USER`,
+  `DB_PASSWORD`) from the backend service; set `DB_NAME` to a literal schema
+  name and load `schema.sql` → `procedures.sql` → `indexes_views.sql` against
+  it once. Set `ALLOWED_ORIGINS` on the backend to the deployed frontend's URL
+  so CORS allows it.
 
 ## Project Structure
 
