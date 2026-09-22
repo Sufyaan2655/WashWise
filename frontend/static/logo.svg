@@ -1,0 +1,52 @@
+<svg width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WASHWISE logo">
+	<defs>
+		<pattern id="weaveA" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+			<line x1="0" y1="0" x2="0" y2="9" stroke="#2f6b58" stroke-width="1" />
+		</pattern>
+		<pattern id="weaveB" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+			<line x1="0" y1="0" x2="0" y2="9" stroke="#0f2b23" stroke-width="1" />
+		</pattern>
+		<radialGradient id="vignette" cx="50%" cy="46%" r="72%">
+			<stop offset="0" stop-color="#000000" stop-opacity="0" />
+			<stop offset="1" stop-color="#000000" stop-opacity="0.22" />
+		</radialGradient>
+	</defs>
+
+	<rect width="640" height="640" fill="#173f36" />
+	<rect width="640" height="640" fill="url(#weaveA)" opacity="0.5" />
+	<rect width="640" height="640" fill="url(#weaveB)" opacity="0.5" />
+	<rect width="640" height="640" fill="url(#vignette)" />
+
+	<circle cx="132" cy="311" r="42" fill="#2a7d68" />
+	<text
+		x="132"
+		y="311"
+		text-anchor="middle"
+		dominant-baseline="central"
+		font-family="'Space Grotesk', Arial, sans-serif"
+		font-size="43"
+		font-weight="700"
+		fill="#f4f3ed"
+	>W</text>
+
+	<text
+		id="rest"
+		x="179"
+		y="336"
+		font-family="Georgia, 'Times New Roman', serif"
+		font-size="70"
+		font-weight="700"
+		fill="#f4f3ed"
+	>ASHWISE</text>
+
+	<text
+		x="320"
+		y="404"
+		text-anchor="middle"
+		font-family="'Space Grotesk', Arial, sans-serif"
+		font-size="19"
+		font-weight="700"
+		letter-spacing="3.4"
+		fill="#a9c9bd"
+	>LAUNDRY, WITHOUT THE WAITING</text>
+</svg>
